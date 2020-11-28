@@ -71,6 +71,9 @@ public class GreetingController {
             returnPage.addObject("imgSrc", imgSrc);
 
             //Save this in the DB.
+
+
+
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
