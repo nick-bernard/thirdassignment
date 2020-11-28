@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -48,10 +49,16 @@ public class GreetingController {
         return new ModelAndView("uploadFiles");
     }
 
-    @PostMapping(value = "/upload")
-    public ModelAndView uploads3(@RequestParam("photo") MultipartFile image, @RequestParam(name = "desc") String desc) {
+    @PostMapping(value = "/add")
+    public ModelAndView registerNewUser(@RequestParam("Photo") MultipartFile image,
+                                        @RequestParam(name = "Name") String name,
+                                        @RequestParam(name = "Username") String username,
+                                        @RequestParam(name = "Password") String password,
+                                        @RequestParam(name = "Bio") String bio
+                                        )
+    {
         ModelAndView returnPage = new ModelAndView();
-        System.out.println("description      " + desc);
+        System.out.println("description      " + name);
         System.out.println(image.getOriginalFilename());
 
         BasicAWSCredentials cred = new BasicAWSCredentials(accesskey, secretkey);
@@ -67,7 +74,7 @@ public class GreetingController {
             String imgSrc = "http://" + bucketName + ".s3.amazonaws.com/" + image.getOriginalFilename();
 
             returnPage.setViewName("showImage");
-            returnPage.addObject("name", desc);
+            returnPage.addObject("name", name);
             returnPage.addObject("imgSrc", imgSrc);
 
             //Save this in the DB.
