@@ -32,7 +32,7 @@ public class GreetingController {
 
     @GetMapping("/")
     public String hello(){
-        return "hello";
+        return "index";
     }
     @GetMapping("/greeting")
     public ModelAndView greeting(@RequestParam(name = "name", required = true) String name) {
