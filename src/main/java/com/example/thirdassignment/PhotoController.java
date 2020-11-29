@@ -22,7 +22,7 @@ import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 
 @Controller
-public class GreetingController {
+public class PhotoController {
     // @Value("#{environment.accesskey}")
     @Value("${accessKey}")
     String accesskey;
@@ -35,6 +35,8 @@ public class GreetingController {
     public String hello(){
         return "index";
     }
+
+
     @GetMapping("/greeting")
     public ModelAndView greeting(@RequestParam(name = "name", required = true) String name) {
         ModelAndView mv = new ModelAndView("greeting");
@@ -48,6 +50,7 @@ public class GreetingController {
         //System.out.println(accesskey  + bucketName + secretkey);
         return new ModelAndView("uploadFiles");
     }
+
 
     @PostMapping(value = "/add")
     public ModelAndView registerNewUser(@RequestParam("Photo") MultipartFile image,
@@ -66,6 +69,7 @@ public class GreetingController {
         // AWSCredentialsProvider(cred)).with
         AmazonS3 client = AmazonS3ClientBuilder.standard().withCredentials(new AWSStaticCredentialsProvider(cred))
                 .withRegion(Regions.US_EAST_1).build();
+
         try {
             PutObjectRequest put = new PutObjectRequest(bucketName, image.getOriginalFilename(),
                     image.getInputStream(), new ObjectMetadata()).withCannedAcl(CannedAccessControlList.PublicRead);
@@ -73,9 +77,15 @@ public class GreetingController {
 
             String imgSrc = "http://" + bucketName + ".s3.amazonaws.com/" + image.getOriginalFilename();
 
-            returnPage.setViewName("showImage");
+            returnPage.setViewName("showAddedToDB");
             returnPage.addObject("name", name);
+            returnPage.addObject("username", username);
+            returnPage.addObject("bio", bio);
             returnPage.addObject("imgSrc", imgSrc);
+
+            //Save this in the DB.
+
+
 
             //Save this in the DB.
 
@@ -86,8 +96,8 @@ public class GreetingController {
             e.printStackTrace();
             returnPage.setViewName("error");
         }
-        return returnPage;
 
+        return returnPage;
     }
 
     /*

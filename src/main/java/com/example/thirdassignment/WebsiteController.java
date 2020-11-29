@@ -34,6 +34,7 @@ public class WebsiteController {
         // Save to database!! //
         ////////////////////////
         view.addAttribute("name", fname + " " + lname);
+
         return "saveConfirmation";
     }
 
