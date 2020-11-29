@@ -39,21 +39,23 @@ public class RegistrationController {
         return new ModelAndView("register");
     }
 
-
+    /*
     @GetMapping("/greeting")
     public ModelAndView greeting(@RequestParam(name = "name", required = true) String name) {
         ModelAndView mv = new ModelAndView("greeting");
         mv.addObject("name", name+"lol");
         return mv;
     }
+    */
 
 
+    /*
     @GetMapping("/index")
     public ModelAndView renderUploadPage() {
         //System.out.println(accesskey  + bucketName + secretkey);
         return new ModelAndView("uploadFiles");
     }
-
+    */
 
     @PostMapping(value = "/add")
     public ModelAndView registerNewUser(@RequestParam("Photo") MultipartFile image,
