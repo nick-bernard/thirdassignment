@@ -22,7 +22,7 @@ import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 
 @Controller
-public class PhotoController {
+public class RegistrationController {
     // @Value("#{environment.accesskey}")
     @Value("${accessKey}")
     String accesskey;
@@ -31,9 +31,12 @@ public class PhotoController {
     @Value("${bucketName}")
     String bucketName;
 
-    @GetMapping("/")
-    public String hello(){
-        return "index";
+
+
+    @GetMapping("/register")
+    public ModelAndView renderRegistrationPage(){
+
+        return new ModelAndView("register");
     }
 
 

@@ -21,7 +21,7 @@
                 id="navcol-1">
                 <ul class="nav navbar-nav ml-auto">
                     <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="login2">Log In</a></li>
+                    <li class="nav-item"><a class="nav-link" href="login">Log In</a></li>
                     <li class="nav-item"><a class="nav-link active" href="register">Register Account</a></li>
                     <li class="nav-item"><a class="nav-link" href="artworks">Artworks</a></li>
                 </ul>
@@ -36,18 +36,17 @@
                     <p>Enter your full name, a username, a strong password, a short biography about yourself, and also select a profile picture to upload before clicking the "Send" button</p>
                 </div>
 
-                <form action="/add"  method="post" enctype="multipart/form-data">
+                <form action="/add" method="post" enctype="multipart/form-data">
                     <div class="form-group"><label>Name</label><input type="text" class="form-control" name="Name" /></div>
                     <div class="form-group"><label>Username</label><input type="text" class="form-control" name="Username" /></div>
                     <div class="form-group"><label>Password</label><input type="email" class="form-control" name="Password" /></div>
                     <div class="form-group"><label>Bio</label><textarea class="form-control" name="Bio"></textarea></div>
     
-                    <div class="form-group">
-                        <input type="file" name="Photo" /><br />
-                    </div>
+                    <div class="form-group"><input type="file" name="Photo" /><br /></div>
     
-                    <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Send</button></div>
+                    <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Register</button></div>
                 </form>
+
             </div>
         </section>
     </main>
